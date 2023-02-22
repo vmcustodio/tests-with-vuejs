@@ -18,8 +18,9 @@ describe('SumComponent', () => {
 
     await button.trigger('click');
 
-    const result = Number(wrapper.find('p').text());
-    expect(result).toEqual(4);
+    const value = wrapper.find('p');
+    const resultado2 = Number(value.text());
+    expect(resultado2).toEqual(4);
   });
 
   it('should return "não foi" when a number is undefined call function sum', async () => {
@@ -27,7 +28,7 @@ describe('SumComponent', () => {
     const number2 = wrapper.find('[data-testid="number2__input"]');
 
     number1.setValue(2);
-    number2.setValue(undefined);
+    number2.setValue(null);
 
     const button = wrapper.find('button');
 
@@ -35,6 +36,8 @@ describe('SumComponent', () => {
 
     const message = wrapper.find('span').text();
     console.log(message);
-    expect(message).toBe('não foi possível');
+    expect(message).toEqual(
+      'não foi possível mostrar o resultado, por favor insira os dois números para realizar a soma.'
+    );
   });
 });
