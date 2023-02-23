@@ -1,8 +1,8 @@
-import { shallowMount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import SumComponent from '../../components/SumComponent.vue';
 
 describe('SumComponent', () => {
-  const wrapper = shallowMount(SumComponent);
+  const wrapper = mount(SumComponent);
   it('Should render component', () => {
     expect(wrapper.exists()).toBeTruthy();
   });
@@ -19,8 +19,8 @@ describe('SumComponent', () => {
     await button.trigger('click');
 
     const value = wrapper.find('p');
-    const resultado2 = Number(value.text());
-    expect(resultado2).toEqual(4);
+    const resultado = Number(value.text());
+    expect(resultado).toEqual(4);
   });
 
   it('should return "não foi" when a number is undefined call function sum', async () => {
@@ -35,7 +35,6 @@ describe('SumComponent', () => {
     await button.trigger('click');
 
     const message = wrapper.find('span').text();
-    console.log(message);
     expect(message).toEqual(
       'não foi possível mostrar o resultado, por favor insira os dois números para realizar a soma.'
     );
